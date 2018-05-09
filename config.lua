@@ -6,16 +6,16 @@ Config.Locale                     = 'sv'
 Config.Zones = {
 
   PoliceDuty = {
-    Pos   = { x = 439.825, y = -975.693, z = 29.689 },
+    Pos   = { x = 439.825, y = -975.693, z = 29.691 },
     Size  = { x = 2.5, y = 2.5, z = 1.5 },
-    Color = { r = 255, g = 255, b = 0 },  
+    Color = { r = 0, g = 255, b = 0 },  
     Type  = 27,
   },
 
   AmbulanceDuty = {
-  	Pos = { x = 442.64, y = -977.88, z = 29.689 },
-  	Size = { x = 2.5, y = 2.5, z = 1.5 },
-  	Color = { r = 255, g = 255, b = 0 },
-  	Type = 27,
+    Pos = { x = 264.45, y = -1356.84, z = 23.56 },
+    Size = { x = 2.5, y = 2.5, z = 1.5 },
+    Color = { r = 0, g = 255, b = 0 },
+    Type = 27,
   },
 }
