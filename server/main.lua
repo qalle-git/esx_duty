@@ -51,14 +51,3 @@ AddEventHandler('duty:ambulance', function(job)
         xPlayer.setJob('ambulance', 3)
     end
 end)
-
---notification
-function sendNotification(xSource, message, messageType, messageTimeout)
-    TriggerClientEvent("pNotify:SendNotification", xSource, {
-        text = message,
-        type = messageType,
-        queue = "qalle",
-        timeout = messageTimeout,
-        layout = "bottomCenter"
-    })
-end
