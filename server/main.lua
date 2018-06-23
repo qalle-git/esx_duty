@@ -8,7 +8,9 @@ AddEventHandler('duty:police', function(job)
         local _source = source
         local xPlayer = ESX.GetPlayerFromId(_source)
 
-    if xPlayer.job.name == 'police' and xPlayer.job.grade == 1 then
+    if xPlayer.job.name == 'police' and xPlayer.job.grade == 0 then
+    	xPlayer.setJob('offpolice', 0)
+    elseif xPlayer.job.name == 'police' and xPlayer.job.grade == 1 then
         xPlayer.setJob('offpolice', 1)
     elseif xPlayer.job.name == 'police' and xPlayer.job.grade == 2 then
         xPlayer.setJob('offpolice', 2)
@@ -18,7 +20,9 @@ AddEventHandler('duty:police', function(job)
         xPlayer.setJob('offpolice', 4)
     end
 
-    if xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 1 then
+    if xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 0 then
+        xPlayer.setJob('police', 0)
+    elseif xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 1 then
         xPlayer.setJob('police', 1)
     elseif xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 2 then
         xPlayer.setJob('police', 2)
@@ -35,6 +39,8 @@ AddEventHandler('duty:ambulance', function(job)
         local _source = source
         local xPlayer = ESX.GetPlayerFromId(_source)
 
+    if xPlayer.job.name == 'ambulance' and xPlayer.job.grade == 0 then
+        xPlayer.setJob('offambulance', 0)
     if xPlayer.job.name == 'ambulance' and xPlayer.job.grade == 1 then
         xPlayer.setJob('offambulance', 1)
     elseif xPlayer.job.name == 'ambulance' and xPlayer.job.grade == 2 then
@@ -43,7 +49,9 @@ AddEventHandler('duty:ambulance', function(job)
         xPlayer.setJob('offambulance', 3)
     end
 
-    if xPlayer.job.name == 'offambulance' and xPlayer.job.grade == 1 then
+    if xPlayer.job.name == 'offambulance' and xPlayer.job.grade == 0 then
+        xPlayer.setJob('ambulance', 0)
+    elseif xPlayer.job.name == 'offambulance' and xPlayer.job.grade == 1 then
         xPlayer.setJob('ambulance', 1)
     elseif xPlayer.job.name == 'offambulance' and xPlayer.job.grade == 2 then
         xPlayer.setJob('ambulance', 2)
