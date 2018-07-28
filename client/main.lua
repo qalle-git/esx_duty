@@ -28,7 +28,7 @@ Citizen.CreateThread(function ()
   while ESX == nil do
     TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
     Citizen.Wait(0)
- 	PlayerData = ESX.GetPlayerData()
+  PlayerData = ESX.GetPlayerData()
   end
 end)
 
@@ -44,15 +44,9 @@ end)
 
 ----markers
 AddEventHandler('esx_duty:hasEnteredMarker', function (zone)
-  if zone == 'AmbulanceDuty' then
-    CurrentAction     = 'ambulance_duty'
-    CurrentActionMsg  = _U('duty')
-    CurrentActionData = {}
-  end
-  if zone == 'PoliceDuty' then
-    CurrentAction     = 'police_duty'
-    CurrentActionMsg  = _U('duty')
-    CurrentActionData = {}
+  if zone ~= nil then
+    CurrentAction     = 'onoff'
+    CurrentActionMsg = _U('duty')
   end
 end)
 
@@ -63,51 +57,34 @@ end)
 
 --keycontrols
 Citizen.CreateThread(function ()
-  while true do
-    Citizen.Wait(0)
+    while true do
+        Citizen.Wait(1)
 
-      local playerPed = GetPlayerPed(-1)
+        local playerPed = GetPlayerPed(-1)
+        
+        local jobs = {
+            'offambulance',
+            'offpolice',
+            'police',
+            'ambulance'
+        }
 
-    if CurrentAction ~= nil then
-      SetTextComponentFormat('STRING')
-      AddTextComponentString(CurrentActionMsg)
-      DisplayHelpTextFromStringLabel(0, 0, 1, -1)
+        if CurrentAction ~= nil then
+            for k,v in pairs(jobs) do
+                if PlayerData.job.name == v then
+                    SetTextComponentFormat('STRING')
+                    AddTextComponentString(CurrentActionMsg)
+                    DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
-      if IsControlPressed(0, Keys['E']) then
-        if CurrentAction == 'ambulance_duty' then
-          if PlayerData.job.name == 'ambulance' or PlayerData.job.name == 'offambulance' then
-            TriggerServerEvent('duty:ambulance')
-          if PlayerData.job.name == 'ambulance' then
-            sendNotification(_U('offduty'), 'success', 2500)
-            Wait(1000)
-          else
-            sendNotification(_U('onduty'), 'success', 2500)
-            Wait(1000)
-          end
-        else
-          sendNotification(_U('notamb'), 'error', 5000)
-          Wait(1000)
+                    if IsControlPressed(0, Keys['E']) then
+                        TriggerServerEvent('duty:onoff')
+                    end
+                end
+            end
+
         end
-      end
 
-        if CurrentAction == 'police_duty' then
-          if PlayerData.job.name == 'police' or PlayerData.job.name == 'offpolice' then
-            TriggerServerEvent('duty:police')
-          if PlayerData.job.name == 'police' then
-            sendNotification(_U('offduty'), 'success', 2500)
-            Wait(1000)
-          else
-            sendNotification(_U('onduty'), 'success', 2500)
-            Wait(1000)
-          end
-        else
-          sendNotification(_U('notpol'), 'error', 5000)
-          Wait(1000)
-          end
-        end
-      end
-    end
-  end       
+    end       
 end)
 
 -- Display markers
@@ -153,14 +130,3 @@ Citizen.CreateThread(function ()
     end
   end
 end)
-
---notification
-function sendNotification(message, messageType, messageTimeout)
-	TriggerEvent("pNotify:SendNotification", {
-		text = message,
-		type = messageType,
-		queue = "duty",
-		timeout = messageTimeout,
-		layout = "bottomCenter"
-	})
-end

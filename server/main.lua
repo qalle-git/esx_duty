@@ -2,60 +2,23 @@ ESX = nil
 
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
-RegisterServerEvent('duty:police')
-AddEventHandler('duty:police', function(job)
+RegisterServerEvent('duty:onoff')
+AddEventHandler('duty:onoff', function(job)
 
-        local _source = source
-        local xPlayer = ESX.GetPlayerFromId(_source)
-
-    if xPlayer.job.name == 'police' and xPlayer.job.grade == 0 then
-    	xPlayer.setJob('offpolice', 0)
-    elseif xPlayer.job.name == 'police' and xPlayer.job.grade == 1 then
-        xPlayer.setJob('offpolice', 1)
-    elseif xPlayer.job.name == 'police' and xPlayer.job.grade == 2 then
-        xPlayer.setJob('offpolice', 2)
-    elseif xPlayer.job.name == 'police' and xPlayer.job.grade == 3 then
-        xPlayer.setJob('offpolice', 3)
-    elseif xPlayer.job.name == 'police' and xPlayer.job.grade == 4 then
-        xPlayer.setJob('offpolice', 4)
+    local _source = source
+    local xPlayer = ESX.GetPlayerFromId(_source)
+    local job = xPlayer.job.name
+    local grade = xPlayer.job.grade
+    
+    if job == 'police' or job == 'ambulance' then
+        xPlayer.setJob('off' ..job, grade)
+        TriggerClientEvent('esx:showNotification', _source, _U('offduty'))
+    elseif job == 'offpolice' then
+        xPlayer.setJob('police', grade)
+        TriggerClientEvent('esx:showNotification', _source, _U('onduty'))
+    elseif job == 'offambulance' then
+        xPlayer.setJob('ambulance', grade)
+        TriggerClientEvent('esx:showNotification', _source, _U('onduty'))
     end
 
-    if xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 0 then
-        xPlayer.setJob('police', 0)
-    elseif xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 1 then
-        xPlayer.setJob('police', 1)
-    elseif xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 2 then
-        xPlayer.setJob('police', 2)
-    elseif xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 3 then
-        xPlayer.setJob('police', 3)
-    elseif xPlayer.job.name == 'offpolice' and xPlayer.job.grade == 4 then
-        xPlayer.setJob('police', 4)
-    end
-end)
-
-RegisterServerEvent('duty:ambulance')
-AddEventHandler('duty:ambulance', function(job)
-
-        local _source = source
-        local xPlayer = ESX.GetPlayerFromId(_source)
-
-    if xPlayer.job.name == 'ambulance' and xPlayer.job.grade == 0 then
-        xPlayer.setJob('offambulance', 0)
-    elseif xPlayer.job.name == 'ambulance' and xPlayer.job.grade == 1 then
-        xPlayer.setJob('offambulance', 1)
-    elseif xPlayer.job.name == 'ambulance' and xPlayer.job.grade == 2 then
-        xPlayer.setJob('offambulance', 2)
-    elseif xPlayer.job.name == 'ambulance' and xPlayer.job.grade == 3 then
-        xPlayer.setJob('offambulance', 3)
-    end
-
-    if xPlayer.job.name == 'offambulance' and xPlayer.job.grade == 0 then
-        xPlayer.setJob('ambulance', 0)
-    elseif xPlayer.job.name == 'offambulance' and xPlayer.job.grade == 1 then
-        xPlayer.setJob('ambulance', 1)
-    elseif xPlayer.job.name == 'offambulance' and xPlayer.job.grade == 2 then
-        xPlayer.setJob('ambulance', 2)
-    elseif xPlayer.job.name == 'offambulance' and xPlayer.job.grade == 3 then
-        xPlayer.setJob('ambulance', 3)
-    end
 end)
