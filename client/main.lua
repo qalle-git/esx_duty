@@ -76,7 +76,7 @@ Citizen.CreateThread(function ()
                     AddTextComponentString(CurrentActionMsg)
                     DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
-                    if IsControlPressed(0, Keys['E']) then
+                    if IsControlJustPressed(0, Keys['E']) then
                         TriggerServerEvent('duty:onoff')
                     end
                 end
