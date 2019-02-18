@@ -12,9 +12,9 @@ Config.Zones = {
     Type  = 27,
   },
   
-  PoliceSandyDuty = {
-    Pos   = { x = 439.825, y = -975.693, z = 29.691 },
-    Size  = { x = 2.5, y = 2.5, z = 1.5 },
+  PoliceDuty = {
+    Pos   = { x = 1853.45, y = 3689.98, z = 33.29 },
+    Size  = { x = 1.5, y = 1.5, z = 1.5 },
     Color = { r = 0, g = 255, b = 0 },  
     Type  = 27,
   },
