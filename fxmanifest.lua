@@ -1,8 +1,11 @@
-resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
+-- Resource Metadata
+fx_version 'bodacious'
+games { 'rdr3', 'gta5' }
 
+author 'qalle-fivem'
 description 'ESX Police Job'
-
 version '1.0.0'
+
 
 server_scripts {
   '@es_extended/locale.lua',
