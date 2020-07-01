@@ -1,6 +1,5 @@
--- Resource Metadata
 fx_version 'bodacious'
-games { 'rdr3', 'gta5' }
+game 'gta5'
 
 author 'qalle-fivem'
 description 'ESX Police Job'
@@ -13,7 +12,7 @@ server_scripts {
   'translation/en.lua',
   'translation/pl.lua',
   'config.lua',
-  'server/main.lua',
+  'server/main.lua'
 }
 
 client_scripts {
@@ -22,5 +21,5 @@ client_scripts {
   'translation/en.lua',
   'translation/pl.lua',
   'config.lua',
-  'client/main.lua',
+  'client/main.lua'
 }
